@@ -1,0 +1,35 @@
+name: Day One Core Concepts Lab
+
+# 2. The Trigger: Listen for pushes or manual UI button clicks
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+# 3. The Execution Tier
+jobs:
+  # Job 1: Verification Phase
+  verify-environment:
+    runs-on: ubuntu-latest # Allocates a fresh Ubuntu VM host
+
+    steps:
+      # Step A: Uses a marketplace action to pull the source code onto the VM
+      - name: Fetch Repository Source Code
+        uses: actions/checkout@v4
+
+      # Step B: Runs native shell commands to print runtime information
+      - name: Check Environment Tools
+        run: |
+          echo "Triggered by user: ${{ github.actor }}"
+          echo "Current Git Branch: ${{ github.ref }}"
+          echo "Checking pre-installed runner software versions:"
+          git --version
+          docker --version
+          docker compose version
+
+  # Job 2: Documentation Phase (Runs simultaneously in parallel on a separate VM)
+  print-summary:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log Execution Output
+        run: echo "Hello World! This job ran concurrently alongside the verification job."
