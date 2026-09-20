@@ -19,7 +19,6 @@ jobs:
         uses: actions/checkout@v4
         
       - name:  Git Clone Status
-        depends: gitclone
         run: echo "code clonned successfully..." 
 
       # Step B: Runs native shell commands to print runtime information
@@ -34,6 +33,7 @@ jobs:
 
   # Job 2: Documentation Phase (Runs simultaneously in parallel on a separate VM)
   print-summary:
+    needs: verify-environment
     runs-on: ubuntu-latest
     steps:
       - name: Log Execution Output
