@@ -4,7 +4,6 @@ name: Day One Core Concepts Lab
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch:
 
 # 3. The Execution Tie
 jobs:
