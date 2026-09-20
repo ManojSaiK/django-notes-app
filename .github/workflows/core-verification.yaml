@@ -6,7 +6,7 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
-# 3. The Execution Tier
+# 3. The Execution Tie
 jobs:
   # Job 1: Verification Phase
   verify-environment:
@@ -16,6 +16,7 @@ jobs:
       # Step A: Uses a marketplace action to pull the source code onto the VM
       - name: Fetch Repository Source Code
         uses: actions/checkout@v4
+        run: echo "Code clonned successfully.."
 
       # Step B: Runs native shell commands to print runtime information
       - name: Check Environment Tools
