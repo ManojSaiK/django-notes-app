@@ -15,8 +15,12 @@ jobs:
     steps:
       # Step A: Uses a marketplace action to pull the source code onto the VM
       - name: Fetch Repository Source Code
+        id: gitclone
         uses: actions/checkout@v4
-        run: echo "Code clonned successfully.."
+        
+      - name:  Git Clone Status
+        depends: gitclone
+        run: echo "code clonned successfully..." 
 
       # Step B: Runs native shell commands to print runtime information
       - name: Check Environment Tools
